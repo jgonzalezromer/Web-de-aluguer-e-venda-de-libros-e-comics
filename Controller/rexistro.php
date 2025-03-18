@@ -16,13 +16,15 @@
     
         // Comprobamos que puxose a mesma contrasinal
         if ($contrasinal !== $repite_contrasinal){
-            echo "As contrasinais non coinciden";
+            echo "<p style='color: red;'>As contrasinais non coinciden</p>";
         } else {
-            // Gardamos
+            // Gardamos o rexistro nunha variable
             $rexistro=rexistro($usuario,$contrasinal,$nome,$direccion,$telefono,$nifdni);
-
+            // Agora comprobamos a varibale para saber se foi existosa
             if ($rexistro) {
+                // Se foi exitosa rediriximos a páxina inicial
                 header("Location: ../index.php");
+                // Cortamos o script para que non se execute nada máis
                 exit();
             } else {
                 echo "Erro ao rexistrar.";
