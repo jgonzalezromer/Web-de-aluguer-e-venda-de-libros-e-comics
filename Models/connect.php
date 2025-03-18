@@ -1,23 +1,20 @@
 <?php
+
+// Credenciais para o inicio de sesion en mysql
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "catalogo";
 $port= 3308;
 
-// Create connection
+// Creamos a conexión con mysql
 $conn = new mysqli($servername, $username, $password,$database,$port);
 
-// Check connection
+// Comprobar se hai un erro ao conectar 
 if ($conn->connect_error) {
+    // Con die detemos o script
     die("Connection failed: " . $conn->connect_error);
-}
-
-echo "Connected successfully"."<br>";
-if ($conn->ping()){
-    echo "La conexión sigue abierta";
-    $conn->close();
 } else {
-    echo "La conexión se ha cerrado";
+    echo "<h1>Conexión establecida</h1>";
 }
 ?>
