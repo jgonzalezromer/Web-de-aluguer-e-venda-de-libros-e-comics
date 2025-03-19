@@ -9,9 +9,6 @@ function rexistro($usuario,$contrasinal,$nome,$direccion,$telefono,$nifdni){
     // Gardamos a conexión coa base de datos nunha variable
     $conn=ConexionDB();
 
-    // Facemos o hash do contrasinal
-    $hashed_contrasinal = password_hash($contrasinal, PASSWORD_DEFAULT);
-
     // Facemos unha variable para insertar os datos onde ainda non introducimos variables para coidarnos de insercción sql
     $insert_novo_rexistro = $conn ->prepare("INSERT INTO novo_rexistro (usuario,contrasinal,nome,direccion,telefono,nifdni)
     VALUES (?,?,?,?,?,?)");
@@ -60,8 +57,8 @@ function autenticacion($usuario,$contrasinal){
     // Supoñemos que o usuario é a primary key (so pode haber un usuario co mesmo nome)
     if ($fila = $resultado->fetch_assoc()){
         // Verificamos se o contrasinal coincide
-        if (password_verify($fila['contrasinal'],$contrasinal)) {
-
+        // Poderiamos tamen facelo con mais seguridade con if (password_verify($contrasinal,$fila['contrasinal'])) {
+        if ($contrasinal == $fila['contrasinal']){
             // Se ten o mesmo contrasinal gardamos o a autenticacion do usuario
             // Supoñemos que no tipo de usuario gardamos os datos como 'A' admin, 'U' usuario
             $autenticacion_usuario=$fila['tipo_usuario'] === 'A' ? 'admin' : 'usuario';
