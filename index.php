@@ -8,6 +8,7 @@ if (isset($_POST['rexistro'])){
 
     // Reconducimos ao rexistro
     header("Location: ./Controller/rexistro.php");
+    exit;
 } elseif (isset($_POST['acesso'])){
 
     // Recollemos os datos que recheou o usuario (o trim serve para quitar espacios e se non se recheou da null a resposta)

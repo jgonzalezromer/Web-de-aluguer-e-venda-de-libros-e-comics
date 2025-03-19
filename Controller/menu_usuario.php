@@ -11,5 +11,8 @@ if(isset($_POST['ver_libroscomics_aluguer'])){
 } elseif (isset($_POST['conf_usuario'])){
     header("Location: ./conf_usuario.php");
     exit;
+} elseif (isset($_POST['aluguer_libroscomics'])){
+    header("Location: ./aluguer_libroscomics.php");
+    exit;
 }
 ?>
