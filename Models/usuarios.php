@@ -30,4 +30,31 @@ function rexistro($usuario,$contrasinal,$nome,$direccion,$telefono,$nifdni){
         return false;
     }
 }
+function autenticacion($usuario,$contrasinal){
+
+    // Gardamos a conexión coa base de datos nunha variable
+    $conn=ConexionDB();
+    $estado_usuario = 'non_existe';
+    // Facemos unha variable para insertar os datos onde ainda non introducir variables para coidarnos de insercción sql
+    $autenticacion_usuario = $conn ->prepare("SELECT * FROM usuario
+    WHERE usuario = ?");
+
+    // Engadimos os datos a insertar na variable onde especificamos que tipo de valor é cada un (ssssis)
+    $autenticacion_usuario->bind_param("s",$usuario);
+
+    // Agora executamos o insert e comprobamos o estado
+    $autenticacion_usuario->execute();
+    $resultado = $autenticacion_usuario->get_result();
+    if ($fila = $resultado->fetch_assoc()){
+        if ($fila['contrasinal']=== $contrasinal) {
+            $estado_usuario=$fila['tipo_usuario'] === 'A' ? 'admin' : 'usuario';
+        } else {
+            $estado_usuario='incorrecto';
+        }
+    }
+    // Se foi exitoso cerraremos a conexión coa db
+    $autenticacion_usuario->close();
+    DesconexionDB($conn);
+    return $estado_usuario;
+}
 ?>
