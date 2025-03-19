@@ -10,6 +10,10 @@ $contido_html = str_replace("<!-- {LIBROS_COMICS} -->",$libroscomics_html,$conti
 echo $contido_html;
 
 if (isset($_POST['alugar'])){
-    echo "alugou";
+    $titulo=$_POST['titulo'];
+    $cantidade=$_POST['cantidade'];
+
+
+    aluguer_libroscomics($titulo,$cantidade);
 }
 ?>

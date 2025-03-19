@@ -3,6 +3,25 @@
 // Chamamos ao arquivo de conexión coa db
 include_once('connect.php');
 
+function aluguer_libroscomics($titulo,$cantidade){
+    $conn=ConexionDB();
+
+    $stmp = $conn ->prepare("UPDATE libro_aluguer SET cantidade=cantidade - ?
+    WHERE titulo=?");
+    $stmp->bind_param("is",$cantidade,$titulo);
+    
+    if ($stmp->execute()) {
+        $stmp = $conn ->prepare("SELECT * FROM libro_aluguer = ?");
+        $stmp -> bind_param("s",$titulo);
+        $stmp -> execute();
+        $resultado = $stmp -> get_result();
+    } else {
+        echo "Erro ao actualizar a cantidade";
+    }
+    $stmp->close();
+    DesconexionDB($conn);
+}
+
 function ver_libroscomics_aluguer(){
 
     // Gardamos a conexión coa base de datos nunha variable
