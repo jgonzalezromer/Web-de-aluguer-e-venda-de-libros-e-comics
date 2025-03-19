@@ -23,7 +23,7 @@
             // Agora comprobamos a varibale para saber se foi existosa
             if ($rexistro) {
                 // Se foi exitosa rediriximos a páxina inicial
-                header("Location: ../View/index.php");
+                header("Location: ../index.php");
                 // Cortamos o script para que non se execute nada máis
                 exit();
             } else {
