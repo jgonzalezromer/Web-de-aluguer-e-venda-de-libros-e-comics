@@ -20,10 +20,14 @@ function actualizarUsuario($usuario, $contrasinal, $nome, $direccion, $telefono,
 }
 
 // Funcion para admintir usuarios da taboa novo_rexistro
-function admitirUsuarios() {
+function admitirUsuarios($usuario, $contrasinal, $nome, $direccion, $telefono, $nifdni) {
     $conn = ConexionDB();
     // Mover los usuarios registrados de 'novo_rexistro' a 'usuario'
-    $stmt = $conn->prepare("INSERT INTO usuario SELECT * FROM novo_rexistro");
+    $stmt = $conn->prepare("
+        INSERT INTO usuario (usuario, contrasinal, nome, direccion, telefono,nifdni,tipo_usuario)
+        SELECT usuario, contrasinal, nome, direccion, telefono,nifdni,'U' 
+        FROM novo_rexistro
+    ");
     $stmt->execute();
     $stmt = $conn->prepare("DELETE FROM novo_rexistro");
     $stmt->execute();
