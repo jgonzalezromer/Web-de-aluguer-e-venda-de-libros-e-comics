@@ -1,4 +1,5 @@
 <?php
+// Iniciamos a sesión para manter a información do usuario en diferentes páxinas
 session_start();
 
 // Se non iniciou sesion facemos que volva ao inicio
@@ -7,9 +8,15 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+// Incluimos os arquivos necesarios
 include_once("../View/menu_usuario.html");
 include_once("../Models/libroscomics.php");
+
 echo "</br></br></br>";
+
+// Comprobamos cal foi a acción solicitada polo usuario a través do formulario
+// Cos dous primeiros botons mostraranos unha taboa con libros
+// Cos seguintes redirixiremos a outras páxinas
 if(isset($_POST['ver_libroscomics_aluguer'])){
     echo "<h3>Libros e cómics en aluguer</h3>";
     ver_libroscomics_aluguer();

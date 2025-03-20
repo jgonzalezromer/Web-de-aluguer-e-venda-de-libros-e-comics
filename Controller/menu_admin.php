@@ -1,4 +1,5 @@
 <?php
+// Iniciamos a sesión para manter a información do usuario en diferentes páxinas
 session_start();
 
 // Se non iniciou sesion facemos que volva ao inicio
@@ -7,10 +8,12 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
+// Incluímos os arquivos necesarios
 include_once("../View/menu_admin.html");
 include_once("../Models/libroscomics.php");
 include_once("../Models/usuarios.php");
 
+// Comprobamos cal foi a acción solicitada polo administrador a través do formulario
 if (isset($_POST['admitir_usuarios'])) {
     include("../View/admitir_usuarios.html");
 } elseif (isset($_POST['engadir_libro_aluguer'])) {
