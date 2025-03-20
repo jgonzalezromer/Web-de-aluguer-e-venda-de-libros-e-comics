@@ -3,6 +3,17 @@
 // Chamamos ao arquivo de conexión coa db
 include_once('connect.php');
 
+// Funcion para admintir usuarios da taboa novo_rexistro
+function admitirUsuarios() {
+    $conn = ConexionDB();
+    // Mover los usuarios registrados de 'novo_rexistro' a 'usuario'
+    $stmt = $conn->prepare("INSERT INTO usuario SELECT * FROM novo_rexistro");
+    $stmt->execute();
+    $stmt = $conn->prepare("DELETE FROM novo_rexistro");
+    $stmt->execute();
+    $stmt->close();
+    DesconexionDB($conn);
+}
 
 // Función para obter os datos dun usuario en base ao seu nome de usuario
 function obtenerUsuario($usuario) {

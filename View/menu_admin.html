@@ -8,17 +8,20 @@
 </head>
 <body>
     <div class="menu-container">
-        <h1>Painel de Administrador</h1>
+        <h1>Menú do Administrador</h1>
         <nav>
-            <ul>
-                <li><a href="#">Admitir novos usuarios</a></li>
-                <li><a href="#">Engadir libros en aluguer</a></li>
-                <li><a href="#">Engadir libros á venda</a></li>
-                <li><a href="#">Eliminar libros de aluguer</a></li>
-                <li><a href="#">Eliminar libros de venda</a></li>
-                <li><a href="#">Modificar libros</a></li>
-                <li><a href="#">Xerar informes</a></li>
-            </ul>
+            <form action="../Controllers/admin_controller.php" method="POST">
+                <button type="submit" name="admitir_usuarios">Admitir novos usuarios</button>
+                <button type="submit" name="engadir_libro_aluguer">Engadir libros en aluguer</button>
+                <button type="submit" name="engadir_libro_venda">Engadir libros á venda</button>
+                <button type="submit" name="eliminar_libro_aluguer">Eliminar libros de aluguer</button>
+                <button type="submit" name="eliminar_libro_venda">Eliminar libros de venda</button>
+                <button type="submit" name="modificar_libro_aluguer">Modificar libros en aluguer</button>
+                <button type="submit" name="modificar_libro_venda">Modificar libros á venda</button>
+                <button type="submit" name="informe_aluguer">Xerar informe de aluguer</button>
+                <button type="submit" name="informe_venda">Xerar informe de venda</button>
+                <button type="submit" name="pasar_devoltos">Pasar libros devoltos a aluguer</button>
+            </form>
         </nav>
     </div>
 </body>

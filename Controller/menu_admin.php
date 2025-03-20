@@ -15,19 +15,20 @@ include_once("../Models/usuarios.php");
 
 // Comprobamos cal foi a acción solicitada polo administrador a través do formulario
 if (isset($_POST['admitir_usuarios'])) {
-    include("../View/admitir_usuarios.html");
+    admitirUsuarios();
+    echo "Usuarios admitidos correctamente.";
 } elseif (isset($_POST['engadir_libro_aluguer'])) {
-    include("../View/engadir_libro_aluguer.html");
+    engadirLibroAluguer($_POST['titulo'], $_POST['cantidade'], $_POST['descripcion'], $_POST['editorial'], $_POST['foto']);
 } elseif (isset($_POST['engadir_libro_venda'])) {
-    include("../View/engadir_libro_venda.html");
+    engadirLibroVenda($_POST['titulo'], $_POST['cantidade'], $_POST['descripcion'], $_POST['editorial'], $_POST['foto']);
 } elseif (isset($_POST['eliminar_libro_aluguer'])) {
-    include("../View/eliminar_libro_aluguer.html");
+    eliminarLibroAluguer($_POST['titulo']);
 } elseif (isset($_POST['eliminar_libro_venda'])) {
-    include("../View/eliminar_libro_venda.html");
+    eliminarLibroVenda($_POST['titulo']);
 } elseif (isset($_POST['modificar_libro_aluguer'])) {
-    include("../View/modificar_libro_aluguer.html");
+    modificarLibroAluguer($_POST['id'], $_POST['titulo'], $_POST['cantidade'], $_POST['descripcion'], $_POST['editorial'], $_POST['foto']);
 } elseif (isset($_POST['modificar_libro_venda'])) {
-    include("../View/modificar_libro_venda.html");
+    modificarLibroVenda($_POST['id'], $_POST['titulo'], $_POST['cantidade'], $_POST['descripcion'], $_POST['editorial'], $_POST['foto']);
 } elseif (isset($_POST['informe_aluguer'])) {
     echo "<h3>Informe de libros e cómics para aluguer</h3>";
     ver_libroscomics_aluguer();

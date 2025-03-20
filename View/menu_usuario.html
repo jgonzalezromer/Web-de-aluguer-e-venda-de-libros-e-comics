@@ -10,12 +10,14 @@
     <div class="menu-container">
         <h1>Menú do Usuario</h1>
         <nav>
-            <ul>
-                <li><a href="aluguer_libroscomics.html">Ver libros en aluguer</a></li>
-                <li><a href="compra_libroscomics.html">Ver libros á venda</a></li>
-                <li><a href="conf_usuario.html">Modificar datos</a></li>
-                <li><a href="devolucion_libroscomics.html">Devolver libros</a></li>
-            </ul>
+            <form action="../Controllers/usuario_controller.php" method="POST">
+                <button type="submit" name="ver_libroscomics_aluguer">Ver libros en aluguer</button>
+                <button type="submit" name="ver_libroscomics_venda">Ver libros á venda</button>
+                <button type="submit" name="conf_usuario">Modificar datos</button>
+                <button type="submit" name="devolucion_libroscomics">Devolver libros</button>
+                <button type="submit" name="aluguer_libroscomics">Alugar libros</button>
+                <button type="submit" name="compra_libroscomics">Comprar libros</button>
+            </form>
         </nav>
     </div>
 </body>

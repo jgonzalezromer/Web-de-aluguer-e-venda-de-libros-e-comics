@@ -3,6 +3,66 @@
 // Chamamos ao arquivo de conexión coa db
 include_once('connect.php');
 
+// Función para modificar os libros de aluguer
+function modificarLibroAluguer($titulo, $cantidade, $descripcion, $editorial, $foto) {
+    $conn = ConexionDB();
+    $stmt = $conn->prepare("UPDATE libro_aluguer SET cantidade=?, descripcion=?, editorial=?, foto=? WHERE titulo=?");
+    $stmt->bind_param("sisss", $titulo, $cantidade, $descripcion, $editorial, $foto);
+    $stmt->execute();
+    $stmt->close();
+    DesconexionDB($conn);
+}
+
+// Función para modificar os libros en venda
+function modificarLibroVenda($titulo, $cantidade, $descripcion, $editorial, $foto) {
+    $conn = ConexionDB();
+    $stmt = $conn->prepare("UPDATE libro_venda SET cantidade=?, descripcion=?, editorial=?, foto=? WHERE titulo=?");
+    $stmt->bind_param("sisss", $titulo, $cantidade, $descripcion, $editorial, $foto);
+    $stmt->execute();
+    $stmt->close();
+    DesconexionDB($conn);
+}
+
+// Función para eliminar libros de aluguer
+function eliminarLibroAluguer($titulo) {
+    $conn = ConexionDB();
+    $stmt = $conn->prepare("DELETE FROM libro_aluguer WHERE titulo = ?");
+    $stmt->bind_param("s", $titulo);
+    $stmt->execute();
+    $stmt->close();
+    DesconexionDB($conn);
+}
+
+// Función para eliminar libros de venda
+function eliminarLibroVenda($titulo) {
+    $conn = ConexionDB();
+    $stmt = $conn->prepare("DELETE FROM libro_venda WHERE titulo = ?");
+    $stmt->bind_param("s", $titulo);
+    $stmt->execute();
+    $stmt->close();
+    DesconexionDB($conn);
+}
+
+// Función para engadir libros a aluguer
+function engadirLibroAluguer($titulo, $cantidade, $descripcion, $editorial, $foto) {
+    $conn = ConexionDB();
+    $stmt = $conn->prepare("INSERT INTO libro_aluguer (titulo, cantidade, descripcion, editorial, foto) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sisss", $titulo, $cantidade, $descripcion, $editorial, $foto);
+    $stmt->execute();
+    $stmt->close();
+    DesconexionDB($conn);
+}
+
+// Función para engadir libros a venda
+function engadirLibroVenda($titulo, $cantidade, $descripcion, $editorial, $foto) {
+    $conn = ConexionDB();
+    $stmt = $conn->prepare("INSERT INTO libro_venda (titulo, cantidade, descripcion, editorial, foto) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sisss", $titulo, $cantidade, $descripcion, $editorial, $foto);
+    $stmt->execute();
+    $stmt->close();
+    DesconexionDB($conn);
+}
+
 // Movemos os libros devoltos á táboa de aluguer e elimina da táboa de devolucións
 function pasar_libros_devoltos() {
     $conn = ConexionDB();
