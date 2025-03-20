@@ -1,7 +1,11 @@
 <?php
+// Iniciamos sesión
+session_start(); 
+
 // Chamamos aos arquivos necesarios
 include_once("./View/index.html");
 include_once("./Models/usuarios.php");
+
 
 // Comprobamos se o usuario clicou en Rexistrarse ou en Acceso
 if (isset($_POST['rexistro'])){
@@ -28,9 +32,11 @@ if (isset($_POST['rexistro'])){
             header("Location: ./Controller/rexistro.php");
             exit;
         case 'usuario':
+            $_SESSION['usuario'] = $usuario; //Gardamos o usuario que iniciou sesión
             header("Location: ./Controller/menu_usuario.php");
             exit;
         default:
+            $_SESSION['usuario'] = $usuario; //Gardamos o usuario que iniciou sesión
             header("Location: ./Controller/menu_admin.php");
             exit;
     }

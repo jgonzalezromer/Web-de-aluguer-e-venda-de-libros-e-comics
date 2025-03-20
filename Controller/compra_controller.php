@@ -1,9 +1,17 @@
 <?php
+session_start();
+
+// Se non iniciou sesion facemos que volva ao inicio
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 include_once('../Models/libroscomics.php');
 
 if (isset($_POST['comprar'])) {
     $titulo = $_POST['titulo'];
-    $comprador = $_POST['comprador'];
+    $comprador = $_SESSION['usuario'];
 
     actualizar_stock_libro($titulo);
 

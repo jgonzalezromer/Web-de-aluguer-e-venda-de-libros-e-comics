@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Se non iniciou sesion facemos que volva ao inicio
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../index.php");
+    exit();
+}
+
 include_once("../View/menu_admin.html");
 include_once("../Models/libroscomics.php");
 include_once("../Models/usuarios.php");
