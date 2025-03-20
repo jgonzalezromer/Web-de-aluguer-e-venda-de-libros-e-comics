@@ -3,25 +3,42 @@
 // Chamamos ao arquivo de conexión coa db
 include_once('connect.php');
 
+
+// Función para obter os datos dun usuario en base ao seu nome de usuario
 function obtenerUsuario($usuario) {
+    // Conectamos á base de datos
     $conn = ConexionDB();
+    // Preparamos a consulta SQL para obter os datos do usuario
     $query = $conn->prepare("SELECT usuario, contrasinal, nome, direccion, telefono, nifdni FROM usuario WHERE usuario = ?");
+    // Asignamos os parámetros á consulta
     $query->bind_param("s", $usuario);
+    // Executamos a consulta
     $query->execute();
+    // Obtemos o resultado da consulta
     $resultado = $query->get_result();
+    // Extraemos os datos do usuario como un array asociativo
     $usuarioData = $resultado->fetch_assoc();
+    // Pechamos a consulta e a conexión
     $query->close();
     DesconexionDB($conn);
+    // Devolvemos os datos do usuario
     return $usuarioData;
 }
 
+// Función para actualizar os datos dun usuario na base de datos
 function actualizarUsuario($usuario, $contrasinal, $nome, $direccion, $telefono, $nifdni) {
+    // Conectamos á base de datos
     $conn = ConexionDB();
+    // Preparamos a consulta SQL para actualizar os datos do usuario
     $query = $conn->prepare("UPDATE usuario SET contrasinal = ?, nome = ?, direccion = ?, telefono = ?, nifdni = ? WHERE usuario = ?");
+    // Asignamos os parámetros á consulta
     $query->bind_param("ssssss", $contrasinal, $nome, $direccion, $telefono, $nifdni, $usuario);
+    // Executamos a consulta e gardamos o resultado
     $resultado = $query->execute();
+    // Pechamos a consulta e a conexión
     $query->close();
     DesconexionDB($conn);
+    // Devolvemos o resultado da operación
     return $resultado;
 }
 
@@ -54,6 +71,8 @@ function rexistro($usuario,$contrasinal,$nome,$direccion,$telefono,$nifdni){
         return false;
     }
 }
+
+// Función para autenticar a un usuario
 function autenticacion($usuario,$contrasinal){
 
     // Gardamos a conexión coa base de datos nunha variable
@@ -92,6 +111,7 @@ function autenticacion($usuario,$contrasinal){
     // Cerraremos a conexión coa db e devolvemos a autenticacion do usuario
     $atopar_usuario->close();
     DesconexionDB($conn);
+    // Devolvemos o estado da autenticación
     return $autenticacion_usuario;
 }
 ?>
