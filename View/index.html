@@ -3,14 +3,22 @@
     <head>
         <meta charset="UTF-8">
         <title>Páxina de inicio</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/login.css">
     </head>
     <body>
-        <h1>Benvido</h1>
-        <form method="post">
-            Nome de usuario: <input type="text" name="usuario" required><br><br>
-            Contrasinal: <input type="password" name="contrasinal" required><br><br>
-            <input type="submit" name="acesso" value="Acceder"> 
-        </br></br>
-        </form>
-        <input type="submit" name="rexistro" value="Rexistrarse">
+        <div class="login-box">
+            <h1>Benvido</h1>
+            <form method="post">
+                <label for="usuario">Nome de usuario:</label>
+                <input type="text" id="usuario" name="usuario" required><br><br>
+
+                <label for="contrasinal">Contrasinal:</label>
+                <input type="password" id="contrasinal" name="contrasinal" required><br><br>
+
+                <input type="submit" name="acesso" value="Acceder"> 
+                <input type="submit" name="rexistro" value="Rexistrarse">
+            </form>
+        </div>
+    </body>
 </html>

@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Rexistrase</title>
-    </head>
-    <body>
-        <h1> Rexistrate </h1>
+<head>
+    <meta charset="UTF-8">
+    <title>Rexistro</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="register-box">
+        <h1>Rexistrarse</h1>
         <form method="post">
-            Nome de usuario: <input type="text" name="usuario" required><br><br>
-            Contrasinal: <input type="password" name="contrasinal" required><br><br>
-            Repite Contrasinal: <input type="password" name="repite_contrasinal" required><br><br>
-            Nome: <input type="text" name="nome" required><br><br>
-            Dirección: <input type="text" name="direccion" required><br><br>
-            Teléfono: <input type="number" name="telefono" required><br><br>
-            DNI|NIF: <input type="number" name="nifdni" required><br><br>
-            <input type="submit" name="rexistro" value="Rexistrarse"> 
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="usuario">Nome de usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+            
+            <label for="contrasinal">Contrasinal:</label>
+            <input type="password" id="contrasinal" name="contrasinal" required>
+            
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+            
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" required>
+            
+            <label for="nifdni">NIF/DNI:</label>
+            <input type="text" id="nifdni" name="nifdni" required>
+            
+            <input type="submit" name="rexistrar" value="Rexistrar">
         </form>
-    </body>
+    </div>
+</body>
 </html>

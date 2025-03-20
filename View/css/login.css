@@ -1,0 +1,36 @@
+/* Fondo con gradiente */
+body {
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Caja del formulario */
+.login-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* Campos de entrada */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Botón de acceso */
+.login-box button {
+    width: 100%;
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}

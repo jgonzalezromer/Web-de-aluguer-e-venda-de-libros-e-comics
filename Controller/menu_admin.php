@@ -1,21 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Panel administradores</title>
-    </head>
-    <body>
-        <h1>Benvido</h1>
-        <input type="submit" value="Admitir novos usuarios" >
-        <input type="submit" value="Meter novos libros ou comics para aluguer" >
-        <input type="submit" value="Meter novos libros ou comics para vender" >
-        <input type="submit" value="Eliminar libros ou comics para aluguer" >
-        <input type="submit" value="Eliminar libros ou comics para venda" >
-        <input type="submit" value="Modificar libros ou comics para aluguer" >
-        <input type="submit" value="Modificar libros ou comics para a venda" >
-        <input type="submit" value="Sacar informe de libros e comics para alugar" >
-        <input type="submit" value="Sacar informe de libros e comics a venda" >
-        <input type="submit" value="Pasar libros e comics devoltos a estar dispoñibles para aluguer" >
+<?php
+include_once("../View/menu_admin.html");
+include_once("../Models/libroscomics.php");
+include_once("../Models/usuarios.php");
 
-    </body>
-</html>
+if (isset($_POST['admitir_usuarios'])) {
+    include("../View/admitir_usuarios.html");
+} elseif (isset($_POST['engadir_libro_aluguer'])) {
+    include("../View/engadir_libro_aluguer.html");
+} elseif (isset($_POST['engadir_libro_venda'])) {
+    include("../View/engadir_libro_venda.html");
+} elseif (isset($_POST['eliminar_libro_aluguer'])) {
+    include("../View/eliminar_libro_aluguer.html");
+} elseif (isset($_POST['eliminar_libro_venda'])) {
+    include("../View/eliminar_libro_venda.html");
+} elseif (isset($_POST['modificar_libro_aluguer'])) {
+    include("../View/modificar_libro_aluguer.html");
+} elseif (isset($_POST['modificar_libro_venda'])) {
+    include("../View/modificar_libro_venda.html");
+} elseif (isset($_POST['informe_aluguer'])) {
+    echo "<h3>Informe de libros e cómics para aluguer</h3>";
+    ver_libroscomics_aluguer();
+} elseif (isset($_POST['informe_venda'])) {
+    echo "<h3>Informe de libros e cómics para venda</h3>";
+    ver_libroscomics_venda();
+} elseif (isset($_POST['pasar_devoltos'])) {
+    pasar_libros_devoltos();
+    echo "Libros devoltos pasados a aluguer correctamente.";
+}
+?>

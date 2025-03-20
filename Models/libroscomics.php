@@ -3,6 +3,18 @@
 // Chamamos ao arquivo de conexión coa db
 include_once('connect.php');
 
+function pasar_libros_devoltos() {
+    $conn = ConexionDB();
+    $stmp = $conn->prepare("INSERT INTO libro_aluguer SELECT * FROM libro_devolto");
+    $stmp->execute();
+
+    $stmp = $conn->prepare("DELETE FROM libro_devolto");
+    $stmp->execute();
+
+    $stmp->close();
+    DesconexionDB($conn);
+}
+
 function obter_libros_venda() {
     $conn = ConexionDB();
     $stmp = $conn->prepare("SELECT * FROM libro_venda");
