@@ -1,20 +1,34 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Configuración de usuario</title>
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="css/dashboard.css">
-    </head>
-    <body>
-        <h1>Configuración do usuario</h1>
-            Usuario: <br><br>
-            Contrasinal: <input type="password" name="contrasinal_usuario" required><br><br>
-            Repite Contrasinal: <input type="password" required><br><br>
-            Nome: <input type="text" name="nome" required><br><br>
-            Dirección: <input type="text" name="direccion_usuario" required><br><br>
-            Teléfono: <input type="number" name="telefono_usuario" required><br><br>
-            DNI|NIF: <input type="number" name="telefono_usuario" required><br><br>
-            <input type="submit" value="Cambiar credenciais" >
-    </body>
+<html lang="gl">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuración do usuario</title>
+</head>
+<body>
+    <h1>Configuración do usuario</h1>
+
+    <form action="../Controller/procesar_configuracion.php" method="POST">
+        <p><strong>Usuario:</strong> <?= htmlspecialchars($usuario) ?></p>
+
+        <label for="contrasinal_usuario">Contrasinal:</label>
+        <input type="password" id="contrasinal_usuario" name="contrasinal_usuario" required><br><br>
+
+        <label for="repite_contrasinal">Repite Contrasinal:</label>
+        <input type="password" id="repite_contrasinal" name="repite_contrasinal" required><br><br>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($nome) ?>" required><br><br>
+
+        <label for="direccion_usuario">Dirección:</label>
+        <input type="text" id="direccion_usuario" name="direccion_usuario" value="<?= htmlspecialchars($direccion) ?>" required><br><br>
+
+        <label for="telefono_usuario">Teléfono:</label>
+        <input type="number" id="telefono_usuario" name="telefono_usuario" value="<?= htmlspecialchars($telefono) ?>" required><br><br>
+
+        <label for="dni_nif">DNI|NIF:</label>
+        <input type="text" id="dni_nif" name="dni_nif" value="<?= htmlspecialchars($nifdni) ?>" required><br><br>
+
+        <input type="submit" value="Actualizar datos">
+    </form>
+</body>
 </html>

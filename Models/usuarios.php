@@ -3,6 +3,28 @@
 // Chamamos ao arquivo de conexión coa db
 include_once('connect.php');
 
+function obtenerUsuario($usuario) {
+    $conn = ConexionDB();
+    $query = $conn->prepare("SELECT usuario, contrasinal, nome, direccion, telefono, nifdni FROM usuario WHERE usuario = ?");
+    $query->bind_param("s", $usuario);
+    $query->execute();
+    $resultado = $query->get_result();
+    $usuarioData = $resultado->fetch_assoc();
+    $query->close();
+    DesconexionDB($conn);
+    return $usuarioData;
+}
+
+function actualizarUsuario($usuario, $contrasinal, $nome, $direccion, $telefono, $nifdni) {
+    $conn = ConexionDB();
+    $query = $conn->prepare("UPDATE usuario SET contrasinal = ?, nome = ?, direccion = ?, telefono = ?, nifdni = ? WHERE usuario = ?");
+    $query->bind_param("ssssss", $contrasinal, $nome, $direccion, $telefono, $nifdni, $usuario);
+    $resultado = $query->execute();
+    $query->close();
+    DesconexionDB($conn);
+    return $resultado;
+}
+
 // Función para rexistrar aos novos usuarios
 function rexistro($usuario,$contrasinal,$nome,$direccion,$telefono,$nifdni){
 
