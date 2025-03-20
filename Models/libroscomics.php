@@ -66,10 +66,11 @@ function engadirLibroVenda($titulo, $cantidade, $descripcion, $editorial, $foto)
 // Movemos os libros devoltos á táboa de aluguer e elimina da táboa de devolucións
 function pasar_libros_devoltos() {
     $conn = ConexionDB();
-    $stmp = $conn->prepare("INSERT INTO libro_aluguer SELECT * FROM libro_devolto");
+    $stmp = $conn->prepare("INSERT INTO libro_aluguer (titulo, cantidade, descripcion, editorial, foto) 
+                            SELECT titulo, cantidade, descripcion, editorial, foto FROM libro_devolto");
     $stmp->execute();
 
-    $stmp = $conn->prepare("DELETE FROM libro_devolto");
+    $stmp = $conn->prepare("DELETE FROM libro_devolto ");
     $stmp->execute();
 
     $stmp->close();
