@@ -10,6 +10,7 @@ if (!isset($_SESSION['usuario'])) {
 
 // Incluímos o modelo
 include_once('../Models/libroscomics.php');
+include_once('../View/compra_libroscomics.html');
 
 // Verificamos se se enviou o formulario de compra
 if (isset($_POST['comprar'])) {

@@ -10,6 +10,7 @@ if (!isset($_SESSION['usuario'])) {
 
 // Incluímos o arquivo do modelo
 include_once('../Models/libroscomics.php');
+include_once('../View/devolucion_libroscomics.html');
 
 // Comprobamos se se enviou o formulario de devolución
 if (isset($_POST['devolver'])) {

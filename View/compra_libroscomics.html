@@ -9,7 +9,7 @@
 <body>
     <h1>Compra de libros e cómics</h1>
     <h3>Libros e cómics dispoñibles para a venda:</h3>
-    <form method='POST' action='../Controllers/compra_controller.php'>
+    <form method='POST'>
         <table border='1'>
             <tr>
                 <th>Seleccionar</th>
@@ -33,8 +33,6 @@
                 }
             ?>
         </table>
-        <br>
-        <label>Nome do comprador: <input type='text' name='comprador' required></label>
         <br><br>
         <input type='submit' name='comprar' value='Comprar libro'>
     </form>

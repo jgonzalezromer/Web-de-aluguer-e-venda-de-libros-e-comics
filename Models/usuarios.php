@@ -3,6 +3,22 @@
 // Chamamos ao arquivo de conexión coa db
 include_once('connect.php');
 
+// Función para actualizar los datos del usuario
+function actualizarUsuario($usuario, $contrasinal, $nome, $direccion, $telefono, $nifdni) {
+    $conn = ConexionDB();
+    
+    $query = $conn->prepare("UPDATE usuario 
+                            SET contrasinal = ?, nome = ?, direccion = ?, telefono = ?, nifdni = ? 
+                            WHERE usuario = ?");
+    $query->bind_param("ssssss", $contrasinal, $nome, $direccion, $telefono, $nifdni, $usuario);
+
+    $resultado = $query->execute();
+    $query->close();
+    DesconexionDB($conn);
+
+    return $resultado;
+}
+
 // Funcion para admintir usuarios da taboa novo_rexistro
 function admitirUsuarios() {
     $conn = ConexionDB();
@@ -34,23 +50,6 @@ function obtenerUsuario($usuario) {
     DesconexionDB($conn);
     // Devolvemos os datos do usuario
     return $usuarioData;
-}
-
-// Función para actualizar os datos dun usuario na base de datos
-function actualizarUsuario($usuario, $contrasinal, $nome, $direccion, $telefono, $nifdni) {
-    // Conectamos á base de datos
-    $conn = ConexionDB();
-    // Preparamos a consulta SQL para actualizar os datos do usuario
-    $query = $conn->prepare("UPDATE usuario SET contrasinal = ?, nome = ?, direccion = ?, telefono = ?, nifdni = ? WHERE usuario = ?");
-    // Asignamos os parámetros á consulta
-    $query->bind_param("ssssss", $contrasinal, $nome, $direccion, $telefono, $nifdni, $usuario);
-    // Executamos a consulta e gardamos o resultado
-    $resultado = $query->execute();
-    // Pechamos a consulta e a conexión
-    $query->close();
-    DesconexionDB($conn);
-    // Devolvemos o resultado da operación
-    return $resultado;
 }
 
 // Función para rexistrar aos novos usuarios

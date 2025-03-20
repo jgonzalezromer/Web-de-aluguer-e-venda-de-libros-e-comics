@@ -79,7 +79,7 @@ function pasar_libros_devoltos() {
 // Obtén todos os libros dispoñibles para a venda
 function obter_libros_venda() {
     $conn = ConexionDB();
-    $stmp = $conn->prepare("SELECT * FROM libro_venda");
+    $stmp = $conn->prepare("SELECT * FROM libro_venda WHERE cantidade>0");
     $stmp->execute();
     $resultado = $stmp->get_result();
     $stmp->close();
@@ -112,9 +112,15 @@ function obter_libros_usuario($usuario) {
 // Rexistra a devolución dun libro por parte dun usuario
 function rexistrar_devolucion($titulo, $usuario) {
     $conn = ConexionDB();
-    $stmp = $conn->prepare("INSERT INTO libro_devolto (titulo, usuario, estado) VALUES (?, ?, 'pendente')");
+    $stmp = $conn->prepare("INSERT INTO libro_devolto (titulo, usuario) VALUES (?, ?)");
     $stmp->bind_param("ss", $titulo, $usuario);
     $exito = $stmp->execute();
+    if ($exito) {
+        // Se a inserción foi exitosa, eliminar o libro de `libro_alugado`
+        $stmp = $conn->prepare("DELETE FROM libro_alugado WHERE titulo = ? AND usuario = ?");
+        $stmp->bind_param("ss", $titulo, $usuario);
+        $stmp->execute();
+    }
     $stmp->close();
     DesconexionDB($conn);
     return $exito;
@@ -143,7 +149,7 @@ function aluguer_libroscomics($titulo,$cantidade){
         $descripcion = $resultado['descripcion'];
         $editorial = $resultado['editorial'];
         $foto = $resultado['foto'];
-        $usuario = 'usuario';
+        $usuario = $_SESSION['usuario'];
         $stmp->bind_param("sissss",$titulo,$cantidade,$descripcion,$editorial,$foto,$usuario);
         if($stmp->execute()) {
             echo "Aluguer exitoso";
@@ -161,7 +167,7 @@ function ver_libroscomics_aluguer(){
     // Gardamos a conexión coa base de datos nunha variable
     $conn=ConexionDB();
 
-    $stmp = $conn ->prepare("SELECT * FROM libro_aluguer");
+    $stmp = $conn ->prepare("SELECT * FROM libro_aluguer WHERE cantidade>0");
 
     $stmp -> execute();
 
@@ -203,7 +209,7 @@ function ver_libroscomics_venda(){
     // Gardamos a conexión coa base de datos nunha variable
     $conn=ConexionDB();
 
-    $stmp = $conn ->prepare("SELECT * FROM libro_venda");
+    $stmp = $conn ->prepare("SELECT * FROM libro_venda WHERE cantidade>0");
 
     $stmp -> execute();
 

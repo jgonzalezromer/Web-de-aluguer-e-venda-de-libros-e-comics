@@ -1,0 +1,4 @@
+Comprobante de compra
+Libro/Cómic: 1
+Comprador: Paco
+Data da compra: 2025-03-20 16:03:32

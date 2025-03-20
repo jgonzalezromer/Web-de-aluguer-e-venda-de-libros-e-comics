@@ -9,7 +9,7 @@
 <body>
     <h1>Devolución de libros e cómics</h1>
     <h3>Libros e cómics que tes en aluguer:</h3>
-    <form method='POST' action='../Controllers/devolucion_controller.php'>
+    <form method='POST'>
         <table border='1'>
             <tr>
                 <th>Seleccionar</th>
@@ -20,7 +20,7 @@
                 <th>Foto</th>
             </tr>
             <?php 
-                $libros = obter_libros_usuario('usuario');
+                $libros=obter_libros_usuario($_SESSION['usuario']);
                 while ($fila = $libros->fetch_assoc()) {
                     echo "<tr>
                             <td><input type='radio' name='titulo' value='{$fila['titulo']}' required></td>
