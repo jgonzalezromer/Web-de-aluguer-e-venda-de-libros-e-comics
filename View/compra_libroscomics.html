@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Compra de libros e cómics</title>
+</head>
+<body>
+    <h1>Compra de libros e cómics</h1>
+    <h3>Libros e cómics dispoñibles para a venda:</h3>
+    <form method='POST' action='../Controllers/compra_controller.php'>
+        <table border='1'>
+            <tr>
+                <th>Seleccionar</th>
+                <th>Título</th>
+                <th>Cantidade</th>
+                <th>Descripción</th>
+                <th>Editorial</th>
+                <th>Foto</th>
+            </tr>
+            <?php 
+                $libros = obter_libros_venda();
+                while ($fila = $libros->fetch_assoc()) {
+                    echo "<tr>
+                            <td><input type='radio' name='titulo' value='{$fila['titulo']}' required></td>
+                            <td>{$fila['titulo']}</td>
+                            <td>{$fila['cantidade']}</td>
+                            <td>{$fila['descripcion']}</td>
+                            <td>{$fila['editorial']}</td>
+                            <td>{$fila['foto']}</td>
+                          </tr>";
+                }
+            ?>
+        </table>
+        <br>
+        <label>Nome do comprador: <input type='text' name='comprador' required></label>
+        <br><br>
+        <input type='submit' name='comprar' value='Comprar libro'>
+    </form>
+</body>
+</html>

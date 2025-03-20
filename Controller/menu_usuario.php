@@ -14,5 +14,11 @@ if(isset($_POST['ver_libroscomics_aluguer'])){
 } elseif (isset($_POST['aluguer_libroscomics'])){
     header("Location: ./aluguer_libroscomics.php");
     exit;
-}
+} elseif (isset($_POST['devolucion_libroscomics'])){
+    header("Location: ./devolucion_libroscomics.php");
+    exit;
+} elseif (isset($_POST['compra_libroscomics'])){
+    header("Location: ./compra_libroscomics.php");
+    exit;
+} 
 ?>

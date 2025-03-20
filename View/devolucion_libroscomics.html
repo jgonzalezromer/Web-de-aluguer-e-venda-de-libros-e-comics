@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Devolución de libros e cómics</title>
+</head>
+<body>
+    <h1>Devolución de libros e cómics</h1>
+    <h3>Libros e cómics que tes en aluguer:</h3>
+    <form method='POST' action='../Controllers/devolucion_controller.php'>
+        <table border='1'>
+            <tr>
+                <th>Seleccionar</th>
+                <th>Título</th>
+                <th>Cantidade</th>
+                <th>Descripción</th>
+                <th>Editorial</th>
+                <th>Foto</th>
+            </tr>
+            <?php 
+                $libros = obter_libros_usuario('usuario');
+                while ($fila = $libros->fetch_assoc()) {
+                    echo "<tr>
+                            <td><input type='radio' name='titulo' value='{$fila['titulo']}' required></td>
+                            <td>{$fila['titulo']}</td>
+                            <td>{$fila['cantidade']}</td>
+                            <td>{$fila['descripcion']}</td>
+                            <td>{$fila['editorial']}</td>
+                            <td>{$fila['foto']}</td>
+                          </tr>";
+                }
+            ?>
+        </table>
+        <br>
+        <input type='submit' name='devolver' value='Devolver libro'>
+    </form>
+</body>
+</html>
