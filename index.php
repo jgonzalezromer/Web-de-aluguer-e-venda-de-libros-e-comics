@@ -7,7 +7,6 @@ include_once("./View/index.html");
 include_once("./Models/usuarios.php");
 
 
-
 // Comprobamos se o usuario clicou en Rexistrarse ou en Acceso
 if (isset($_POST['rexistro'])){
 

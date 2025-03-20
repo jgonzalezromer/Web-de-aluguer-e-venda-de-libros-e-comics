@@ -1,0 +1,82 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal de la página */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Estilo del formulario */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos y etiquetas de los campos */
+label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+/* Estilo de los campos de texto y contraseñas */
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+
+/* Estilo para los botones de envío */
+input[type="submit"] {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Resaltar el nombre de usuario (en el párrafo) */
+p {
+    font-size: 16px;
+    color: #555;
+    margin: 20px 0;
+}
+
+/* Añadir algo de espacio entre los campos */
+br {
+    margin: 10px 0;
+}
+
+/* Estilo para la caja de los campos cuando hay errores */
+input:invalid {
+    border-color: red;
+}
